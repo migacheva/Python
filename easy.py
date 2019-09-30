@@ -10,4 +10,3 @@ while counter <= index:
     print (a[counter])
     counter += 1
 print ("finished")
-# test commit
