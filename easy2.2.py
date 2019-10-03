@@ -14,40 +14,39 @@
 # 4. арбуз
 
 # Подсказка: воспользоваться методом .format()
-# должно работать
 fruits = ["яблоко", "банан", "киви", "арбуз"]
 print(fruits)
-f = 1
+f = 0
 for fruit in fruits:
-    fruit = str(f) + "." + fruit
+#    fruit = str(f) + "." + fruit
     f += 1
-    print('{:>10}'.format(fruit))
+    print('{0}.{1:>10}'.format(f, fruit))
+print("task 1 finished")
 
 # Задача-2:
 # Даны два произвольные списка.
 # Удалите из первого списка элементы, присутствующие во втором списке.
-#в процессе
-list_one = [2,3,4,5]
-list_two = [2,4]
-for i in list_one:
-    for j in list_two:
-        if list_one[i] != list_two[j]:
-            list_three=list_one[i]
-            i += 1
-        j +=1
+
+list_one = [2, 3, 78, 4, 3, 5]
+list_two = [1, 3, 4, 4, 9, 32, 2, 4, 4, 22, 32]
+for i in list_two:
+    while i in list_one:
+        list_one.remove(i)
+print("task 2 list_one_new =", list_one)
+
 # Задача-3:
 # Дан произвольный список из целых чисел.
 # Получите НОВЫЙ список из элементов исходного, выполнив следующие условия:
 # если элемент кратен двум, то разделить его на 4, если не кратен, то умножить на два.
 
-#в процессе
-a=[3,2,]
-b=[]
-i=0
-for b in a:
-    if a[i]%2:
-        b=a[i]/4
-        print(b)
+list_a = [3, 2, 4, 33]
+new_a = []
+new_b = []
+# 6, 0.5, 1, 66
+for a in list_a:
+    if a % 2 == 0:
+        new_a.append(a/4.0)
     else:
-        b=a[i]*2
-        print(b)
+        new_a.append(a*2.0)
+print("task 3 list a = ", list_a)
+print("task 3 new list a = ", new_a)
