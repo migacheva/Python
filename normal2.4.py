@@ -55,11 +55,29 @@ print(re.findall('[a-z]{2}([A-Z]+)[A-Z]{2}', line_2))
 # 2500-значное произвольное число.
 # Найдите и выведите самую длинную последовательность одинаковых цифр
 # в вышезаполненном файле.
+import random
 
+with open('fileNorm24', 'w') as f:
+       for i in range(2500):
+              f.write(str(random.randint(0,9)))
+data = open('fileNorm24').read()
+regx = re.compile(r'0{2,}|1{2,}|2{2,}|3{2,}|4{2,}|5{2,}|6{2,}|7{2,}|8{2,}|9{2,}')
+res = regx.findall(data)
+print(res)
+maxi = max(len(x) for x in res)
+print(maxi)
+res = [x for x in res if len(x) ==maxi]
+print(res)
 
-# f = open('fileNorm24', 'w')
-# list = [str(i) for i in range(2500)]
-# for index in list:
-#        f.write(index)
-# print("ok")
-# f.close()
+prev = None
+state = []
+res = []
+for i in data:
+       if prev != i:
+              if len(state)>1:
+                     res.append(''.join(state))
+              state= [i]
+       else:
+              state.append(i)
+              prev = i
+print(res)
