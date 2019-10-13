@@ -4,6 +4,8 @@ import re
 # 1 или более символов в верхнем регистре.
 # Т.е. из строки "mtMmEZUOmcq" нужно получить ['mt', 'm', 'mcq']
 # Решить задачу двумя способами: с помощью re и без.
+bigs = [chr(x) for x in range(ord('A'), ord('Z')+1)]
+littles = [chr(x) for x in range(ord('a'), ord('z')+1)]
 
 line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO'\
        'GIPHpEMujalpPLNzRWXfwHQqwksrFeipEUlTLeclMwAoktKlfUBJHPsnawvjPhfgewVzK'\
@@ -21,7 +23,33 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO'\
        'XiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQoiQ'\
        'zTYwZAiRwycdlHfyHNGmkNqSwXUrxGc'
 
-print("task #1 ", re.findall('[a-z]+', line))
+print("task #1 re ", re.findall('[a-z]+', line))
+
+# def lowInLine(line):
+#        lineLow = []
+#        for i in line:
+#               if i.islower():
+#                      lineLow += i
+#        print("task #1 не re ", lineLow)
+# lowInLine(line)
+
+res = []
+state = []
+prev = None #prev - предыдущее, _next - след после предыдущего Х - искомое
+prev_count = 0
+for x in line:
+       if (x in littles) or (prev in bigs and x in littles):
+              state.append(x)
+       elif state:
+              if prev in littles and x in littles:
+                     state.append(x)
+              elif prev in littles and x in bigs:
+                     if state:
+                            res.append(''.join(state))
+                            state = []
+
+       prev = x
+print("task #1 без re", res)
 
 # Задание-2:
 # Вывести символы в верхнем регистре, слева от которых находятся
@@ -47,7 +75,33 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
        'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ'\
        'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
 
-print("task #2 ", re.findall('[a-z]{2}([A-Z]+)[A-Z]{2}', line_2))
+print("task #2 re ", re.findall('[a-z]{2}([A-Z]+)[A-Z]{2}', line_2))
+
+
+res = []
+state = []
+prev = _next = None #prev - предыдущее, _next - след после предыдущего Х - искомое
+prev_count = 0
+for x in line_2:
+       if prev_count == 0:
+              if prev in littles and _next in littles and x in bigs:
+                     prev_count = 1
+       elif prev_count == 1:
+              if prev in littles and _next in bigs and x in bigs:
+                     prev_count = 2
+              else:
+                     prev_count = 0
+       elif prev_count == 2:
+              if prev in bigs and _next in bigs and x in bigs:
+                     state.append(prev)
+              else:
+                     if state:
+                            res.append(''.join(state))
+                            state = []
+                     prev_count = 0
+       prev = _next
+       _next = x
+print("task #2 без re", res)
 
 # Задание-3:
 # Напишите скрипт, заполняющий указанный файл (самостоятельно задайте имя файла)

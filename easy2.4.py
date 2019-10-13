@@ -8,8 +8,8 @@
 # c = [c * 3 for c in 'list' if c != 'i']
 list_num = [1, 2, 4, 0]
 list_sqrt = [ i **2 for i in list_num]
-print(list_num)
-print(list_sqrt)
+print("task #1 исходный список", list_num)
+print("task #1 квадратный список", list_sqrt)
 
 # Задание-2:
 # Даны два списка фруктов.
@@ -18,7 +18,7 @@ print(list_sqrt)
 korzina1 = ["банан", "апельсин", "арбуз", "персик", "салфетка"]
 korzina2 = ["огурцы", "банан", "кабачок", "апельсин", "персик", "томаты"]
 korzina3 = [i for i in korzina1 for j in korzina2 if j == i ]
-print(korzina3)
+print("task #2 ", korzina3)
 
 # Задание-3:
 # Дан список, заполненный произвольными числами.
@@ -29,4 +29,4 @@ print(korzina3)
 
 list = [1, 3, 4, 16, 0, 9, -22]
 list = [i for i in list if (i>0 and i%3==0 and i%4 !=0)]
-print(list)
+print("task #3 ", list)

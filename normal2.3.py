@@ -26,14 +26,14 @@ fibonacci(11,23)
 # Для решения данной задачи нельзя использовать встроенную функцию и метод sort()
 
 def sort_to_max(origin_list):
-    print(origin_list)
+    print("task #2 не отсортированный список", origin_list)
     for i in range(len(origin_list)-1):
         for j in range(len(origin_list) - 1):
             if origin_list[j] > origin_list[j+1]:
                 k = origin_list[j]
                 origin_list[j] = origin_list[j+1]
                 origin_list[j + 1] = k
-    print("task #2 ", origin_list)
+    print("task #2 отсортированный список", origin_list)
 
 sort_to_max([2, 10, -12, 10 , 10, 2.5, 20, -11, 4, 4, 0])
 
@@ -43,8 +43,8 @@ sort_to_max([2, 10, -12, 10 , 10, 2.5, 20, -11, 4, 4, 0])
 def new_filter(func, iter):
     for i in iter:
         if func(i):
-            yield i
-print("task #3 ", list(new_filter(lambda x: x<=0, [1, -4, 0, 45, 78, 0, -4, -9])))
+            yield i # Аналог return
+print("task #3 отрицательные числа и ноль", list(new_filter(lambda x: x<=0, [1, -4, 0, 45, 78, 0, -4, -9])))
 
 # Задача-4:
 # Даны четыре точки А1(х1, у1), А2(x2 ,у2), А3(x3 , у3), А4(х4, у4).
