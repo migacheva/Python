@@ -21,7 +21,7 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO'\
        'XiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQoiQ'\
        'zTYwZAiRwycdlHfyHNGmkNqSwXUrxGc'
 
-print(re.findall('[a-z]+', line))
+print("task #1 ", re.findall('[a-z]+', line))
 
 # Задание-2:
 # Вывести символы в верхнем регистре, слева от которых находятся
@@ -47,7 +47,7 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
        'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ'\
        'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
 
-print(re.findall('[a-z]{2}([A-Z]+)[A-Z]{2}', line_2))
+print("task #2 ", re.findall('[a-z]{2}([A-Z]+)[A-Z]{2}', line_2))
 
 # Задание-3:
 # Напишите скрипт, заполняющий указанный файл (самостоятельно задайте имя файла)
@@ -63,21 +63,7 @@ with open('fileNorm24', 'w') as f:
 data = open('fileNorm24').read()
 regx = re.compile(r'0{2,}|1{2,}|2{2,}|3{2,}|4{2,}|5{2,}|6{2,}|7{2,}|8{2,}|9{2,}')
 res = regx.findall(data)
-print(res)
+print("task #3 ", res)
 maxi = max(len(x) for x in res)
-print(maxi)
-res = [x for x in res if len(x) ==maxi]
-print(res)
-
-prev = None
-state = []
-res = []
-for i in data:
-       if prev != i:
-              if len(state)>1:
-                     res.append(''.join(state))
-              state= [i]
-       else:
-              state.append(i)
-              prev = i
-print(res)
+res = [x for x in res if len(x) == maxi]
+print("task #3 ", res)
