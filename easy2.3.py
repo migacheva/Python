@@ -52,19 +52,22 @@ my_round(0.339999, 1)
 
 # не совсем понимаю, почему не нужно выводить результаты проверки, заменила на True/False
 
-ticket_number = input("Введите номер билета: ")
-ticket = str("123123")
+ticket = input("Введите номер билета: ")
+# ticket = str("123123")
 def lucky_ticket(ticket_number):
-    part_one = ticket_number[0:3]
-    part_two = ticket_number[3:6]
-    sum_part_one = int(part_one[0]) + int(part_one[1]) + int(part_one[2])
-    sum_part_two = int(part_two[0]) + int(part_two[1]) + int(part_two[2])
     if len(ticket_number) == 6:
-        if sum_part_one == sum_part_two:
-#            print("Билет счастливый")
-            return True
+        part_one = ticket_number[0:3]
+        part_two = ticket_number[3:6]
+        sum_part_one = int(part_one[0]) + int(part_one[1]) + int(part_one[2])
+        sum_part_two = int(part_two[0]) + int(part_two[1]) + int(part_two[2])
+        if len(ticket_number) == 6:
+            if sum_part_one == sum_part_two:
+    #            print("Билет счастливый")
+                return True
+        else:
+    #        print("билет не ок")
+            return False
     else:
-#        print("билет не ок")
-        return False
+        input("Некорректное значение билета, он должен быть = 6 символам")
 #    print(sum_part_one, sum_part_two)
 lucky_ticket(ticket)
