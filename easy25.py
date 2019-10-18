@@ -29,11 +29,14 @@ def delete_dirs(name):
         else:
             print ("Успешно удалена директория %s " % path)
 
-create_dirs("dir")
-delete_dirs("dir")
+# create_dirs("dir")
+# delete_dirs("dir")
 
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.
+def list_dir():
+    print(os.listdir())
 
+list_dir()
 # Задача-3:
 # Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
