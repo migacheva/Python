@@ -13,34 +13,46 @@ import os
 # и выводит результат действия: "Успешно создано/удалено/перешел",
 # "Невозможно создать/удалить/перейти"
 
-print("Выберите действие: \n"
-  "1. Перейти в папку \n"
-  "2. Просмотреть содержимое текущей папки \n"
-  "3. Удалить папку \n"
-  "4. Создать папку \n")
-action = int(input())
-path = os.getcwd()
+def abc():
+    print("Выберите действие: \n"
+      "1. Перейти в папку \n"
+      "2. Просмотреть содержимое текущей папки \n"
+      "3. Удалить папку \n"
+      "4. Создать папку \n"
+      "5. Выйти из программы"  )
+    action = int(input())
+    return action
 
-if action == 1:
-    print("Введено 1")
-    easy25.list_dir()
-    name_dir = input("Введите наименование папки для перехода")
-    if name_dir in easy25.list_dir():
+running = True
+while running:
+    action = abc()
+    path = os.getcwd()
+
+    if action == 1:
+        print("Переход в директорию")
+        easy25.list_dir()
+        name_dir = input("Введите наименование папки для перехода \n")
         try:
-            os.mkdir(path) + "\\" + name_dir
+            content = os.chdir(name_dir)
+            print("Содержимое папки: ", content)
         except OSError:
             print ("Мы успешно перешли")
-        else:
-            print ("пам пам пам")
-
-elif action == 2:
-    print("заглушка 2")
-elif action == 3:
-    print("заглушка 3")
-elif action == 4:
-    print("заглушка 4")
-else:
-    print("Введите действие от 1 до 4")
+    elif action == 2:
+        print("Текущая папка состоит из:")
+        easy25.list_dir()
+    elif action == 3:
+        print("Удаление папки")
+        del_dir = input("Введите имя папки для удаления из списка выше \n")
+        easy25.delete_dirs(del_dir)
+    elif action == 4:
+        print("Создание новой папки")
+        new_dir = input("Введите имя папки \n")
+        easy25.create_dirs(new_dir)
+    elif action == 5:
+        print("Выход из программы")
+        running = False
+    else:
+        print("Введите действие от 1 до 4")
 
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,

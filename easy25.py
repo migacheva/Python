@@ -8,7 +8,7 @@ import os
 path = os.getcwd()
 print("Текущая рабочая директория %s" % path)
 
-def create_dirs(name):
+def create_dirs9(name):
     # определим имя директории, которую создаём
     for i in range(1,10):
         path = os.getcwd() + "\\" + name + str(i)
@@ -19,7 +19,17 @@ def create_dirs(name):
         else:
             print ("Успешно создана директория %s " % path)
 
-def delete_dirs(name):
+def create_dirs(name):
+
+    path = os.getcwd() + "\\" + name
+    try:
+        os.mkdir(path)
+    except OSError:
+        print ("Создать директорию %s не удалось" % path)
+    else:
+        print ("Успешно создана директория %s " % path)
+
+def delete_dirs9(name):
     for i in range(1,10):
         path = os.getcwd() + "\\" + name + str(i)
         try:
@@ -29,14 +39,19 @@ def delete_dirs(name):
         else:
             print ("Успешно удалена директория %s " % path)
 
-# create_dirs("dir")
-# delete_dirs("dir")
+def delete_dirs(name):
+    path = os.getcwd() + "\\" + name
+    try:
+        os.rmdir(path)
+    except OSError:
+        print ("Удалить директорию %s не удалось" % path)
+    else:
+        print ("Успешно удалена директория %s " % path)
 
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.
 def list_dir():
     print(os.listdir())
 
-list_dir()
 # Задача-3:
 # Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
