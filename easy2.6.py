@@ -18,30 +18,40 @@ class Triangle:
         self.p1 = p1
         self.p2 = p2
         self.p3 = p3
-        return self.perimeter(p1, p2, p3)
+        self.a = lengAB(p1, p2)
+        self.b = lengAB(p2, p3)
+        self.c = lengAB(p3, p1)
 
-    def perimeter(self, p1, p2, p3):
-        print("точечки треугольника", p1, p2, p3)
-        lenp1p2 = lengAB(p1, p2)
-        lenp2p3 = lengAB(p2, p3)
-        lenp3p1 = lengAB(p3, p1)
-        per = lenp1p2 + lenp2p3 + lenp3p1
-        # print("Периметр треугольника", per)
-        return per
+    def perimeter(self):
+        return self.a + self.b + self.c
 
-    def square(self, a, b, c):
-        p = (a+b+c)/2
-        s = math.sqrt(p*(p-a)*(p-b)*(p-c))
-        # print("Площадь: ", s)
+    def square(self):
+        p = (self.a+ self.b + self.c)/2
+        s = math.sqrt(p*(p-self.a)*(p-self.b)*(p-self.c))
         return s
+
+    def height_a(self):
+        p = (self.a + self.b + self.c) / 2
+        ha = (2 * math.sqrt(p * (p - self.a) * (p - self.b) * (p - self.c)))/self.a
+        return ha
+
+    def height_b(self):
+        p = (self.a + self.b + self.c) / 2
+        hb = (2 * math.sqrt(p * (p - self.a) * (p - self.b) * (p - self.c)))/self.b
+        return hb
+
+    def height_c(self):
+        p = (self.a + self.b + self.c) / 2
+        hc = (2 * math.sqrt(p * (p - self.a) * (p - self.b) * (p - self.c)))/self.c
+        return hc
 
 # Пример использования класса треугольника:
 tr_1 = Triangle((1, 2), (7, 9), (5, 0))
-print(tr_1)
+# print(tr_1)
 print('Площадь:', tr_1.square())
-# print('Высота к стороне a:', tr_1.height_a())
-# print('Высота к стороне b:', tr_1.height_b())
-# print('Высота к стороне c:', tr_1.height_c())
+print('Высота к стороне a:', tr_1.height_a())
+print('Высота к стороне b:', tr_1.height_b())
+print('Высота к стороне c:', tr_1.height_c())
 print('Периметр:', tr_1.perimeter())
 
 
