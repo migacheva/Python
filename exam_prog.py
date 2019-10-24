@@ -1,9 +1,8 @@
 import math
 
-
 age1 = 20
 sex1 = "F"
-sourceOfIncome1 = 2 # print("Источник дохода:\n 1. Пассивный доход\n  2. Наёмный доход\n  3. Собственный бизнес\n  4. Безработный\n")
+sourceOfIncome1 = 2  # print("Источник дохода:\n 1. Пассивный доход\n  2. Наёмный доход\n  3. Собственный бизнес\n  4. Безработный\n")
 revenue1 = 3
 creditRating1 = 2
 userLoan1 = 4
@@ -35,6 +34,7 @@ def sumLoan(sourceOfIncome, creditRating, userLoan):
         else:
             print("кредит не выдан по собственному доходу")
 
+
 def changeBasePer(goal, creditRating, sourceOfIncome, userLoan):
     if goal:
         if goal == 1:
@@ -65,6 +65,7 @@ def changeBasePer(goal, creditRating, sourceOfIncome, userLoan):
     # print("modifikator", modifikator)
     # print("4%", per)
     return per
+
 
 def getLoan(age, sex, sourceOfIncome, revenue, creditRating, userLoan, deadline, goal):
     if ((age + deadline) != 60 and sex == "F") or ((age + deadline) != 65 and sex == "M") and (age >= 18):
@@ -104,10 +105,8 @@ def getLoan(age, sex, sourceOfIncome, revenue, creditRating, userLoan, deadline,
         print("Кредит НЕ выдан, т.к. возраст либо мал, либо велик (1)")
         print("========= Проверки завершены  =========")
 
-
-
-      # age, sex, sourceOfIncome, revenue, creditRating, userLoan, deadline, goal
-getLoan(18,  "M",       2,           3,         1,          4,          1,      1)
+    # age, sex, sourceOfIncome, revenue, creditRating, userLoan, deadline, goal
+getLoan(18, "M", 2, 3, 1, 4, 1, 1)
 getLoan(10, "M", 2, 3, 1, 4, 1, 1)
 getLoan(80, "F", 2, 3, 1, 4, 9, 1)
 getLoan(55, "M", 2, 3, 1, 4, 5, 1)
