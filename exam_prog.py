@@ -32,7 +32,7 @@ def sumLoan(sourceOfIncome, creditRating, userLoan):
         if userLoan <= OkLoan:
             print("кредит выдан")
         else:
-            print("кредит не выдан по собственному доходу")
+            print("кредит не выдан (3)")
 
 
 def changeBasePer(goal, creditRating, sourceOfIncome, userLoan):
@@ -62,8 +62,7 @@ def changeBasePer(goal, creditRating, sourceOfIncome, userLoan):
     if userLoan:
         modifikator = -math.log10(userLoan)
         per = per + modifikator
-    # print("modifikator", modifikator)
-    # print("4%", per)
+        print("peeeeer", per)
     return per
 
 
