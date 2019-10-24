@@ -17,22 +17,23 @@ def sumLoan(sourceOfIncome, creditRating, userLoan):
     if sourceOfIncome == 1 or creditRating == -1:
         OkLoan = 1
         if userLoan <= OkLoan:
-            print("кредит выдан")
+            result = "кредит выдан"
         else:
-            print("кредит не выдан (1)")
+            result = "кредит не выдан"
     elif sourceOfIncome == 2 or creditRating == 0:
         OkLoan = 5
         if userLoan <= OkLoan:
-            print("кредит выдан")
+            result = "кредит выдан"
         else:
-            print("кредит не выдан (2)")
+            result = "кредит не выдан"
     elif (sourceOfIncome == 3 and (creditRating == 1 or creditRating == 2)) or (
             sourceOfIncome == 4 and (creditRating == 1 or creditRating == 2)):
         OkLoan = 10
         if userLoan <= OkLoan:
-            print("кредит выдан")
+            result = "кредит выдан"
         else:
-            print("кредит не выдан (3)")
+            result = "кредит не выдан"
+    return result
 
 
 def changeBasePer(goal, creditRating, sourceOfIncome, userLoan):
@@ -62,50 +63,46 @@ def changeBasePer(goal, creditRating, sourceOfIncome, userLoan):
     if userLoan:
         modifikator = -math.log10(userLoan)
         per = per + modifikator
-        print("peeeeer", per)
+        # print("peeeeer", per)
     return per
 
 
 def getLoan(age, sex, sourceOfIncome, revenue, creditRating, userLoan, deadline, goal):
-    if ((age + deadline) != 60 and sex == "F") or ((age + deadline) != 65 and sex == "M") and (age >= 18):
-        print("1. Возраст ок")
+    text_failed_loan = "Кредит НЕ выдан, т.к. "
+    result = ""
+    if (((age + deadline) <= 60 and sex == "F") or ((age + deadline) <= 65 and sex == "M")) and (age >= 18):
+        # print("1. Возраст ок")
         if (userLoan / deadline) < (revenue / 3):
-            print("2. Запрашиваемая сумма/срок погашения меньше трети дохода")
+            # print("2. Запрашиваемая сумма/срок погашения меньше трети дохода")
             if creditRating != -2:
-                print("3. Кредитный рейтинг ок")
+                # print("3. Кредитный рейтинг ок")
                 if sourceOfIncome != 4:
-                    print("4. Клиент не безработный")
+                    # print("4. Клиент не безработный")
                     changeBasePerQQ = changeBasePer(goal, creditRating, sourceOfIncome, userLoan)
                     basePer = 10
                     yearPayWithPers = (userLoan * (1 + deadline * (basePer + changeBasePerQQ) / 100)) / deadline
                     print("Годовой платеж с процентами = ", yearPayWithPers)
                     if yearPayWithPers < revenue / 2:
-                        print("5. Годовой платеж с проценами менее половины дохода")
-                        sumLoan(sourceOfIncome, creditRating, userLoan)
+                        # print("5. Годовой платеж с проценами менее половины дохода")
+                        result = sumLoan(sourceOfIncome, creditRating, userLoan)
                         # print("Посчитанные процентыыыы", changeBasePer(goal, creditRating, sourceOfIncome, userLoan))
-                        print("========= Проверки завершены  =========")
                         # if sumLoanQQ:
                         #     print("Сумма платежа соответствует - 6")
                         # else:
                         #     print("Кредит НЕ выдан - 6")
                     else:
-                        print("Кредит НЕ выдан, т.к. годовой платеж с проценами более половины дохода (5)")
-                        print("========= Проверки завершены  =========")
+                        result = "годовой платеж с проценами более половины дохода (5)"
                 else:
-                    print("Кредит НЕ выдан, т.к. клиент безработный (4)")
-                    print("========= Проверки завершены  =========")
+                    result = "клиент безработный (4)"
             else:
-                print("Кредит НЕ выдан, т.к. кредитный рейтинг -2 (3)")
-                print("========= Проверки завершены  =========")
+                result = "кредитный рейтинг -2 (3)"
         else:
-            print("Кредит НЕ выдан, т.к. запрашиваемая сумма/срок погашения более трети дохода (2)")
-            print("========= Проверки завершены  =========")
+            result = "запрашиваемая сумма/срок погашения более или равен трети дохода (2)"
     else:
-        print("Кредит НЕ выдан, т.к. возраст либо мал, либо велик (1)")
-        print("========= Проверки завершены  =========")
+        result = "возраст либо мал, либо велик (1)"
 
-    # age, sex, sourceOfIncome, revenue, creditRating, userLoan, deadline, goal
-getLoan(18, "M", 2, 3, 1, 4, 1, 1)
-getLoan(10, "M", 2, 3, 1, 4, 1, 1)
-getLoan(80, "F", 2, 3, 1, 4, 9, 1)
-getLoan(55, "M", 2, 3, 1, 4, 5, 1)
+    print(result)
+    return result
+
+
+# getLoan(51, "F", 2, 3, 1, 4, 9, 1)
